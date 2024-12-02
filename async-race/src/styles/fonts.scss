@@ -1,17 +1,19 @@
 @font-face {
-    font-family: "tenpounds regular";
-    src: url("../assets/fonts/tenpounds-regular.woff2") format("woff2"),
-        url("../assets/fonts/tenpounds-regular.woff") format("woff");
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
+  font-family: 'tenpounds regular';
+  src:
+    url('../assets/fonts/tenpounds-regular.woff2') format('woff2'),
+    url('../assets/fonts/tenpounds-regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "salina trial";
-    src: url("../assets/fonts/Salina-Trial-Regular.woff2") format("woff2"),
-        url("../assets/fonts/Salina-Trial-Regular.woff") format("woff");
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
+  font-family: 'salina trial';
+  src:
+    url('../assets/fonts/Salina-Trial-Regular.woff2') format('woff2'),
+    url('../assets/fonts/Salina-Trial-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
 }
