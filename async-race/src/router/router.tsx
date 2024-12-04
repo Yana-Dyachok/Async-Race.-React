@@ -6,7 +6,7 @@ import {
 import Layout from '../componets/layout/layout';
 import GaragePage from '../pages/garage';
 import WinnersPage from '../pages/winners';
-import NotFoundPage from '../pages/not-found-page';
+import NotFoundPage from '../pages/not-found-page/not-found-page';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,0 +1,8 @@
+@import '../../../styles/colors.scss';
+
+.inputColor {
+    width: 6rem;
+    height: 5rem;
+    cursor: pointer;
+    border: 0.1rem solid  $c-violet-100;
+}
