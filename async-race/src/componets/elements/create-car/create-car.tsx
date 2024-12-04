@@ -3,10 +3,12 @@ import Button from '../../ui/button/button';
 import InputText from '../../ui/input-text/input-text';
 import InputColor from '../../ui/input-color/input-color';
 import Popup from '../../ui/popup/popup';
+import createAPICar from '../../../api/create-car';
+import { CarName } from '../../../types/types';
 import styles from '../create-car.module.scss';
 
 const CreateCar: React.FC = () => {
-  const [carName, setCarName] = useState<string>('');
+  const [carName, setCarName] = useState<CarName | string>('');
   const [carColor, setCarColor] = useState<string>('#ffffff');
   const [isPopupVisible, setPopupVisible] = useState<boolean>(false);
 
@@ -18,7 +20,7 @@ const CreateCar: React.FC = () => {
     if (carName === '') {
       setPopupVisible(true);
     } else {
-      console.log('Car Name:', carName, 'Car Color:', carColor);
+      createAPICar({ name: carName, color: carColor });
     }
   };
 

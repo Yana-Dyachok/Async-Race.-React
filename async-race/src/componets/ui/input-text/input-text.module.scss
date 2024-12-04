@@ -8,12 +8,11 @@
   border: 0.1rem solid $c-violet-100;
 }
 
-
 @media (max-width: 720px) {
-    .inputText {
-        width: 18rem;
-        min-width: 14rem;
-        height: 3.5rem;
-        font-size: 2rem;
-    }
+  .inputText {
+    width: 18rem;
+    min-width: 14rem;
+    height: 3.5rem;
+    font-size: 2rem;
+  }
 }

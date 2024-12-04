@@ -16,8 +16,8 @@ export interface ICar {
   id: number;
 }
 export interface IBody {
-  name: CarName;
-  color: CarColor;
+  name: CarName | string;
+  color: CarColor | string;
 }
 
 export interface IWinner {

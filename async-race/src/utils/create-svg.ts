@@ -1,4 +1,4 @@
-import { SizesSVG } from "../types/types";
+import { SizesSVG } from '../types/types';
 import { ICar } from '../types/interface';
 
 const createCarSVG = (car: ICar, sizes: SizesSVG): string => {
