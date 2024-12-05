@@ -1,21 +1,28 @@
-import { ICar } from '../types/interface';
+import { ICarsResponse } from '../types/interface';
 import { GARAGE__LINK } from '../types/const';
 
-const getAPICars = async (): Promise<ICar[]> => {
+const getAPICars = async (pageNumber: number): Promise<ICarsResponse> => {
   try {
-    const response = await fetch(GARAGE__LINK, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      `${GARAGE__LINK}?_page=${pageNumber}&_limit=7`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    });
-
+    );
     if (!response.ok) {
-      throw new Error('Failed to fetch cars.');
+      throw new Error('Failed to fetch all cars');
     }
-
-    const cars = await response.json();
-    return cars;
+    const count: string | null = response.headers.get('X-Total-Count');
+    if (!count) {
+      throw new Error('X-Total-Count is null');
+    }
+    return {
+      items: await response.json(),
+      count,
+    };
   } catch (er) {
     throw new Error(`Failed to fetch cars: ${er}`);
   }

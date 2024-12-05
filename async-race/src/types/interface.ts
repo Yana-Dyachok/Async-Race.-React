@@ -19,6 +19,7 @@ export interface ICar {
   color: CarColor;
   id: number;
 }
+
 export interface IBody {
   name: CarName | string;
   color: CarColor | string;
