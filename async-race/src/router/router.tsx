@@ -14,12 +14,13 @@ const router = createBrowserRouter(
       <Route path="/Async-Race-React/" element={<GaragePage />} />
       <Route path="/Async-Race-React/garage" element={<GaragePage />} />
       <Route path="/Async-Race-React/winners" element={<WinnersPage />} />
-      <Route path="/Async-Race-React/*" element={<NotFoundPage />} />
+      <Route
+        path="/Async-Race-React/*"
+        element={<NotFoundPage />}
+        handle={{ hidePath: true }}
+      />
     </Route>,
   ),
-  {
-    basename: '/Async-Race-React',
-  },
 );
 
 export default router;
