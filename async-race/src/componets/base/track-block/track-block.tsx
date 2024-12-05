@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import RenderCarTrack from '../../elements/render-car-track/render-car-track';
 import { generateHundredCars } from '../../../utils/random-generate-cars';
 import Button from '../../ui/button/button';
-import styles from './track-block.module.scss';
+import RenderTrack from './render-track';
 import { ICar } from '../../../types/interface';
 
 const TrackBlock: React.FC = () => {
@@ -18,12 +17,12 @@ const TrackBlock: React.FC = () => {
   };
 
   return (
-    <div className={styles.garageMenu}>
+    <>
       {cars.map((car) => (
-        <RenderCarTrack car={car} key={car.id} />
+        <RenderTrack car={car} key={car.id} />
       ))}
       <Button onClick={generate}>Generate</Button>
-    </div>
+    </>
   );
 };
 

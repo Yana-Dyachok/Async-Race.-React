@@ -18,3 +18,9 @@ body {
   color: $c-white;
   background-image: linear-gradient(to right, $c-black, $c-violet-800);
 }
+
+@media (max-width: 768px) {
+  body {
+    font-size: 1.2rem;
+  }
+}

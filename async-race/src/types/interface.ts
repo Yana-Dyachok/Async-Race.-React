@@ -10,6 +10,10 @@ export interface PopUpProps {
   onClose: () => void;
 }
 
+export interface RenderCarTrackProps {
+  car: ICar;
+}
+
 export interface ICar {
   name: CarName;
   color: CarColor;
