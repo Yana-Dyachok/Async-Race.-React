@@ -8,8 +8,8 @@ const Header: React.FC = () => {
       <h1>Async Race</h1>
       <div className={styles.buttons}>
         {' '}
-        <Button to="/garage">Garage</Button>
-        <Button to="/winners">Winners</Button>
+        <Button to="/Async-Race-React/">Garage</Button>
+        <Button to="/Async-Race-React/winners">Winners</Button>
       </div>
     </header>
   );

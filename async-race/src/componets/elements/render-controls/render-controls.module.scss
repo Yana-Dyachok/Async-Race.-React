@@ -41,11 +41,10 @@
 }
 
 @media (max-width: 768px) {
-    .controlHang,
-    .controlMotion {
-      & > button {
-        font-size: 1.5rem;
-      }
+  .controlHang,
+  .controlMotion {
+    & > button {
+      font-size: 1.5rem;
     }
   }
-  
+}

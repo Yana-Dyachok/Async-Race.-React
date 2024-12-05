@@ -17,7 +17,7 @@ const NotFoundPage: React.FC = () => {
           <span className={styles.digitThird}>4</span>
         </span>
       </section>
-      <Button to="/">Back to main</Button>
+      <Button to="/Async-Race-React/">Back to main</Button>
     </div>
   );
 };
