@@ -11,10 +11,10 @@ import NotFoundPage from '../pages/not-found-page/not-found-page';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<Layout />}>
-      <Route path="/" element={<GaragePage />} />
-      <Route path="/garage" element={<GaragePage />} />
-      <Route path="/winners" element={<WinnersPage />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="/Async-Race-React/" element={<GaragePage />} />
+      <Route path="/Async-Race-React/garage" element={<GaragePage />} />
+      <Route path="/Async-Race-React/winners" element={<WinnersPage />} />
+      <Route path="/Async-Race-React/*" element={<NotFoundPage />} />
     </Route>,
   ),
   {
