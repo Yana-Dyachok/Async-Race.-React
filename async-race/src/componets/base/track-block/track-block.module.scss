@@ -1,11 +1,11 @@
 @import '../../../styles/colors.scss';
 .garageTrackBlock {
-  margin: 1rem 0.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .title {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.3rem;
 }
 
 .pagination {
@@ -34,17 +34,16 @@
 @media (max-width: 768px) {
   .pagination {
     padding: 1rem 0;
-  
+
     :global(.MuiPaginationItem-root) {
       font-size: 1.6rem;
     }
   }
   .title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
-
 
 @media (max-width: 390px) {
   .pagination {

@@ -6,7 +6,9 @@ import styles from './render-car-track.module.scss';
 const RenderCarTrack: React.FC<RenderCarTrackProps> = ({ car }) => {
   return (
     <div className={styles.garageTrack} key={`track-block-${car.id}`}>
-      <h2 key={`name-${car.id}`}>{car.name}</h2>
+      <h2 key={`name-${car.id}`} className={styles.carName}>
+        {car.name}
+      </h2>
       <div className={styles.garageContent} key={`track-content-${car.id}`}>
         <CarSVG car={car} sizes={{ width: '120px', height: '50px' }} />
         <div className={styles.garageFlag} key={`flag-${car.id}`}></div>
