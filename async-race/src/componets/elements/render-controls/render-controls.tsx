@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from '../../ui/button/button';
 import { RenderCarTrackProps } from '../../../types/interface';
-import deleteAPICar from '../../../api/delete-car';
 import { useCarContext } from '../../../utils/car-context';
 import driveAPICar from '../../../api/drive-car';
 import engineControlAPI from '../../../api/engine-control';
+import { AppDispatch } from '../../../lib/store/store';
+import { deleteCar, fetchCars } from '../../../lib/slices/car-slice';
 import styles from './render-controls.module.scss';
 
 const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const { setSelectedCar } = useCarContext();
   const clickStop = () => {
@@ -21,12 +24,12 @@ const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
     setIsDisabled(!isDisabled);
   };
 
-  const clickRemove = () => {
-    deleteAPICar(car.id);
+  const clickRemove = async () => {
+    await dispatch(deleteCar(car.id));
+    dispatch(fetchCars(1));
   };
 
   const clickSelect = () => {
-    console.log(car);
     setSelectedCar(car);
   };
 

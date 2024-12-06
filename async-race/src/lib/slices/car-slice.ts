@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getAPICars from '../../api/get-cars';
 import createAPICar from '../../api/create-car';
+import deleteAPICar from '../../api/delete-car';
 import { ICarsResponse } from '../../types/interface';
 
 interface CarState extends ICarsResponse {
@@ -29,6 +30,14 @@ export const addCar = createAsyncThunk(
   },
 );
 
+export const deleteCar = createAsyncThunk(
+  'cars/deleteCar',
+  async (carId: number) => {
+    await deleteAPICar(carId);
+    return carId;
+  },
+);
+
 const carSlice = createSlice({
   name: 'cars',
   initialState,
@@ -43,7 +52,11 @@ const carSlice = createSlice({
         state.totalItems = action.payload.totalItems;
         state.loading = false;
       })
-      .addCase(addCar.fulfilled, () => {});
+      .addCase(addCar.fulfilled, () => {})
+      .addCase(deleteCar.fulfilled, (state, action) => {
+        state.items = state.items.filter((car) => car.id !== action.payload);
+        state.totalItems = (parseInt(state.totalItems, 10) - 1).toString();
+      });
   },
 });
 

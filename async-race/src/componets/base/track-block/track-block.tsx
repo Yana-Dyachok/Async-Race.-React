@@ -22,7 +22,9 @@ const TrackBlock: React.FC = () => {
   return (
     <div>
       <h2 className={styles.title}>{`Garage(${totalItems})`}</h2>
-      <h3 className={styles.title}>{`Page#${page}`}</h3>
+      <h3
+        className={styles.title}
+      >{`Page#${page > +totalItems / 7 && +totalItems % 7 === 0 ? page - 1 : page}`}</h3>
       {items.map((car) => (
         <RenderTrack car={car} key={car.id} />
       ))}
@@ -30,7 +32,7 @@ const TrackBlock: React.FC = () => {
       <Pagination
         className={styles.pagination}
         count={Math.ceil(+totalItems / 7)}
-        page={page}
+        page={page > +totalItems / 7 && +totalItems % 7 === 0 ? page - 1 : page}
         onChange={handleChange}
       />
     </div>
