@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Pagination from '@mui/material/Pagination';
 import { AppDispatch, RootState } from '../../../lib/store/store';
 import { fetchCars } from '../../../lib/slices/car-slice';
 import RenderTrack from './render-track';
-import Pagination from '@mui/material/Pagination';
 import styles from './track-block.module.scss';
 
 const TrackBlock: React.FC = () => {
@@ -24,7 +24,7 @@ const TrackBlock: React.FC = () => {
       <h2 className={styles.title}>{`Garage(${totalItems})`}</h2>
       <h3
         className={styles.title}
-      >{`Page#${page > +totalItems / 7 && +totalItems % 7 === 0 ? page - 1 : page}`}</h3>
+      >{`Page#${page > +totalItems / 7 && +totalItems % 7 === 0 ? 1 : page}`}</h3>
       {items.map((car) => (
         <RenderTrack car={car} key={car.id} />
       ))}
@@ -32,7 +32,7 @@ const TrackBlock: React.FC = () => {
       <Pagination
         className={styles.pagination}
         count={Math.ceil(+totalItems / 7)}
-        page={page > +totalItems / 7 && +totalItems % 7 === 0 ? page - 1 : page}
+        page={page > +totalItems / 7 && +totalItems % 7 === 0 ? 1 : page}
         onChange={handleChange}
       />
     </div>
