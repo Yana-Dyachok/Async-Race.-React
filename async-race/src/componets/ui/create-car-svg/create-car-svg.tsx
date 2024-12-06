@@ -1,6 +1,7 @@
 import React from 'react';
 import { SizesSVG } from '../../../types/types';
 import { ICar } from '../../../types/interface';
+import styles from './create-car-svg.module.scss';
 
 interface CarSVGProps {
   car: ICar;
@@ -14,6 +15,7 @@ const CarSVG: React.FC<CarSVGProps> = ({ car, sizes }) => {
     <svg
       id={`car-${car.id}`}
       key={`car-key-${car.id}`}
+      className={styles.garageCarImg}
       width={width}
       height={height}
       fill={car.color}

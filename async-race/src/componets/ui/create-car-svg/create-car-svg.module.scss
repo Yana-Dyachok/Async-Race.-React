@@ -1,0 +1,20 @@
+.garageCarImg {
+    z-index: 1;
+  }
+  
+  @keyframes carsAnimation {
+    0% {
+      transform: translateX(0);
+    }
+  
+    100% {
+      transform: translateX(calc(95vw - 120px));
+    }
+  }
+  
+  @media (max-width: 960px) {
+    .garageCarImg  {
+      width: 90px;
+    }
+  }
+  

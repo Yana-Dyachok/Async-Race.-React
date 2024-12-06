@@ -12,8 +12,12 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<Layout />}>
       <Route path="/" element={<GaragePage />} />
-      <Route path="winners" element={<WinnersPage />} />
-      <Route path="*" element={<NotFoundPage />} handle={{ hidePath: true }} />
+      <Route path="/Async-Race-React/winners" element={<WinnersPage />} />
+      <Route
+        path="/Async-Race-React/*"
+        element={<NotFoundPage />}
+        handle={{ hidePath: true }}
+      />
     </Route>,
   ),
   {

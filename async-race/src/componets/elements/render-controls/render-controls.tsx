@@ -1,21 +1,38 @@
 import React, { useState } from 'react';
 import Button from '../../ui/button/button';
 import { RenderCarTrackProps } from '../../../types/interface';
+import deleteAPICar from '../../../api/delete-car';
+import { useCarContext } from '../../../utils/car-context';
 import styles from './render-controls.module.scss';
 
 const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const { setSelectedCar } = useCarContext();
   const clickStop = () => {
     setIsDisabled(!isDisabled);
   };
   const clickStart = () => {
     setIsDisabled(!isDisabled);
   };
+
+  const clickRemove = () => {
+    deleteAPICar(car.id);
+  };
+
+  const clickSelect = () => {
+    console.log(car);
+    setSelectedCar(car);
+  };
+
   return (
     <div className={styles.garageControls} key={`control-${car.id}`}>
       <div className={styles.controlHang}>
-        <Button key={`select-${car.id}`}>Select</Button>
-        <Button key={`remove-${car.id}`}>Remove</Button>
+        <Button key={`select-${car.id}`} onClick={clickSelect}>
+          Select
+        </Button>
+        <Button key={`remove-${car.id}`} onClick={clickRemove}>
+          Remove
+        </Button>
       </div>
       <div className={styles.controlMotion}>
         <Button

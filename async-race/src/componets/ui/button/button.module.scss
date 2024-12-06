@@ -2,7 +2,7 @@
 
 .button {
   padding: 0.5rem;
-  font-size: 3rem;
+  font-size: 2.8rem;
   display: inline-block;
   color: $c-violet-800;
   background-color: $c-white;
@@ -30,6 +30,6 @@
 
 @media (max-width: 768px) {
   .button {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 }

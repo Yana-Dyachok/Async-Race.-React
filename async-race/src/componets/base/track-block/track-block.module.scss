@@ -30,3 +30,26 @@
     color: inherit;
   }
 }
+
+@media (max-width: 768px) {
+  .pagination {
+    padding: 1rem 0;
+  
+    :global(.MuiPaginationItem-root) {
+      font-size: 1.6rem;
+    }
+  }
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+}
+
+
+@media (max-width: 390px) {
+  .pagination {
+    :global(.MuiPaginationItem-root) {
+      font-size: 1.2rem;
+    }
+  }
+}

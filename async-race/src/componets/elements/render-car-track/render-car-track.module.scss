@@ -23,22 +23,3 @@
   z-index: 2;
 }
 
-.garageCarImg {
-  z-index: 1;
-}
-
-@keyframes carsAnimation {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(calc(95vw - 120px));
-  }
-}
-
-@media (max-width: 960px) {
-  .garageCarImg > svg {
-    width: 90px;
-  }
-}
