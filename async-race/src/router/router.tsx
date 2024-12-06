@@ -17,7 +17,7 @@ const router = createBrowserRouter(
     </Route>,
   ),
   {
-    basename: '/Async-Race-React/',
+    basename: '/Async-Race-React',
   },
 );
 

@@ -9,7 +9,6 @@ import styles from '../create-car.module.scss';
 
 const UpdateCar: React.FC = () => {
   const { selectedCar } = useCarContext();
-  console.log('selected', selectedCar);
 
   const [carName, setCarName] = useState<string>('');
   const [carColor, setCarColor] = useState<string>('#ffffff');
