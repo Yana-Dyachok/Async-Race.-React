@@ -21,7 +21,7 @@ const getAPICars = async (pageNumber: number): Promise<ICarsResponse> => {
     }
     return {
       items: await response.json(),
-      count,
+      totalItems: count,
     };
   } catch (er) {
     throw new Error(`Failed to fetch cars: ${er}`);

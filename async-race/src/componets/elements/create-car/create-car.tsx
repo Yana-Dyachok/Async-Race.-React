@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../lib/store/store';
+import { addCar, fetchCars } from '../../../lib/slices/car-slice';
 import Button from '../../ui/button/button';
 import InputText from '../../ui/input-text/input-text';
 import InputColor from '../../ui/input-color/input-color';
 import Popup from '../../ui/popup/popup';
-import createAPICar from '../../../api/create-car';
-import { CarName } from '../../../types/types';
 import styles from '../create-car.module.scss';
 
 const CreateCar: React.FC = () => {
-  const [carName, setCarName] = useState<CarName | string>('');
+  const dispatch = useDispatch<AppDispatch>();
+  const [carName, setCarName] = useState<string>('');
   const [carColor, setCarColor] = useState<string>('#ffffff');
   const [isPopupVisible, setPopupVisible] = useState<boolean>(false);
 
@@ -16,11 +18,12 @@ const CreateCar: React.FC = () => {
     setPopupVisible(false);
   };
 
-  const createCar = () => {
+  const createCar = async () => {
     if (carName === '') {
       setPopupVisible(true);
     } else {
-      createAPICar({ name: carName, color: carColor });
+      await dispatch(addCar({ name: carName, color: carColor }));
+      dispatch(fetchCars(1));
     }
   };
 

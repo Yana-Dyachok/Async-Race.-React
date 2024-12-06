@@ -33,7 +33,7 @@ export interface IWinner {
 
 export interface ICarsResponse {
   items: ICar[];
-  count: string;
+  totalItems: string;
 }
 
 export interface IEngineResponse {
@@ -47,7 +47,7 @@ export interface IWinnerCars extends IWinner {
 
 export interface IWinnersResponse {
   items: IWinnerCars[];
-  count: string;
+  totalItems: string;
 }
 
 export interface IWinnerSort {
