@@ -6,9 +6,10 @@ import Button from '../../ui/button/button';
 import InputText from '../../ui/input-text/input-text';
 import InputColor from '../../ui/input-color/input-color';
 import Popup from '../../ui/popup/popup';
+import { PageProps } from '../../../types/interface';
 import styles from '../create-car.module.scss';
 
-const CreateCar: React.FC = () => {
+const CreateCar: React.FC<PageProps> = ({ page }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [carName, setCarName] = useState<string>('');
   const [carColor, setCarColor] = useState<string>('#ffffff');
@@ -23,7 +24,7 @@ const CreateCar: React.FC = () => {
       setPopupVisible(true);
     } else {
       await dispatch(addCar({ name: carName, color: carColor }));
-      dispatch(fetchCars(1));
+      dispatch(fetchCars(page));
     }
   };
 

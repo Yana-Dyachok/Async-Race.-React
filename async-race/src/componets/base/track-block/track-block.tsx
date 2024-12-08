@@ -6,10 +6,14 @@ import { fetchCars } from '../../../lib/slices/car-slice';
 import RenderTrack from './render-track';
 import styles from './track-block.module.scss';
 
-const TrackBlock: React.FC = () => {
+interface TrackBlockProps {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const TrackBlock: React.FC<TrackBlockProps> = ({ page, setPage }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { items, totalItems } = useSelector((state: RootState) => state.cars);
-  const [page, setPage] = React.useState(1);
 
   useEffect(() => {
     dispatch(fetchCars(page));
@@ -22,17 +26,15 @@ const TrackBlock: React.FC = () => {
   return (
     <div>
       <h2 className={styles.title}>{`Garage(${totalItems})`}</h2>
-      <h3
-        className={styles.title}
-      >{`Page#${page > +totalItems / 7 && +totalItems % 7 === 0 ? 1 : page}`}</h3>
+      <h3 className={styles.title}>{`Page#${page}`}</h3>
       {items.map((car) => (
-        <RenderTrack car={car} key={car.id} />
+        <RenderTrack car={car} currentPage={page} key={car.id} />
       ))}
 
       <Pagination
         className={styles.pagination}
         count={Math.ceil(+totalItems / 7)}
-        page={page > +totalItems / 7 && +totalItems % 7 === 0 ? 1 : page}
+        page={page}
         onChange={handleChange}
       />
     </div>

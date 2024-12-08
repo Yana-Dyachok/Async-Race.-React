@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '../../ui/button/button';
-import { RenderCarTrackProps } from '../../../types/interface';
+import { RenderControlsProps } from '../../../types/interface';
 import driveAPICar from '../../../api/drive-car';
 import engineControlAPI from '../../../api/engine-control';
 import { AppDispatch } from '../../../lib/store/store';
@@ -9,7 +9,10 @@ import { deleteCar, fetchCars } from '../../../lib/slices/car-slice';
 import { setSelectedCar } from '../../../lib/slices/selected-car-slice';
 import styles from './render-controls.module.scss';
 
-const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
+const RenderControls: React.FC<RenderControlsProps> = ({
+  car,
+  currentPage,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
@@ -27,7 +30,7 @@ const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
 
   const clickRemove = async () => {
     await dispatch(deleteCar(car.id));
-    dispatch(fetchCars(1));
+    dispatch(fetchCars(currentPage));
   };
 
   const clickSelect = () => {

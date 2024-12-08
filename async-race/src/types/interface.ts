@@ -14,6 +14,14 @@ export interface RenderCarTrackProps {
   car: ICar;
 }
 
+export interface RenderControlsProps extends RenderCarTrackProps {
+  currentPage: number;
+}
+
+export interface PageProps {
+  page: number;
+}
+
 export interface ICar {
   name: CarName;
   color: CarColor;

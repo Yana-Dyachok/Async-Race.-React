@@ -8,9 +8,10 @@ import InputText from '../../ui/input-text/input-text';
 import InputColor from '../../ui/input-color/input-color';
 import Popup from '../../ui/popup/popup';
 import updateAPICar from '../../../api/update-car';
+import { PageProps } from '../../../types/interface';
 import styles from '../create-car.module.scss';
 
-const UpdateCar: React.FC = () => {
+const UpdateCar: React.FC<PageProps> = ({ page }) => {
   const dispatch = useDispatch<AppDispatch>();
   const selectedCar = useSelector(selectSelectedCar);
   const [carName, setCarName] = useState<string>('');
@@ -37,7 +38,7 @@ const UpdateCar: React.FC = () => {
     else {
       if (selectedCar?.id)
         updateAPICar(selectedCar.id, { name: carName, color: carColor });
-      dispatch(fetchCars(1));
+      dispatch(fetchCars(page));
     }
   };
 

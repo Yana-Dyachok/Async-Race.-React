@@ -4,9 +4,10 @@ import { AppDispatch } from '../../../lib/store/store';
 import { fetchCars } from '../../../lib/slices/car-slice';
 import Button from '../../ui/button/button';
 import { generateHundredCars } from '../../../utils/random-generate-cars';
+import { PageProps } from '../../../types/interface';
 import styles from './menu-buttons.module.scss';
 
-const MenuButtons: React.FC = () => {
+const MenuButtons: React.FC<PageProps> = ({ page }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const clickReset = () => {
@@ -19,7 +20,7 @@ const MenuButtons: React.FC = () => {
   const generateCars = async () => {
     try {
       generateHundredCars();
-      dispatch(fetchCars(1));
+      dispatch(fetchCars(page));
     } catch (error) {
       console.error('Error generating cars:', error);
     }
