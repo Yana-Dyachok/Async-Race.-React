@@ -2,21 +2,22 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '../../ui/button/button';
 import { RenderCarTrackProps } from '../../../types/interface';
-import { useCarContext } from '../../../utils/car-context';
 import driveAPICar from '../../../api/drive-car';
 import engineControlAPI from '../../../api/engine-control';
 import { AppDispatch } from '../../../lib/store/store';
 import { deleteCar, fetchCars } from '../../../lib/slices/car-slice';
+import { setSelectedCar } from '../../../lib/slices/selected-car-slice';
 import styles from './render-controls.module.scss';
 
 const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
-  const { setSelectedCar } = useCarContext();
+
   const clickStop = () => {
     engineControlAPI(car.id, 'stopped');
     setIsDisabled(!isDisabled);
   };
+
   const clickStart = () => {
     engineControlAPI(car.id, 'started');
     const resp = driveAPICar(car.id);
@@ -30,7 +31,7 @@ const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
   };
 
   const clickSelect = () => {
-    setSelectedCar(car);
+    dispatch(setSelectedCar(car));
   };
 
   return (
@@ -62,4 +63,5 @@ const RenderControls: React.FC<RenderCarTrackProps> = ({ car }) => {
     </div>
   );
 };
+
 export default RenderControls;
