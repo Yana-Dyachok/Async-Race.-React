@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { AppDispatch } from '../../../lib/store/store';
 import { addCar, fetchCars } from '../../../lib/slices/car-slice';
 import Button from '../../ui/button/button';
@@ -25,6 +26,7 @@ const CreateCar: React.FC<PageProps> = ({ page }) => {
     } else {
       await dispatch(addCar({ name: carName, color: carColor }));
       dispatch(fetchCars(page));
+      toast.success(`Car ${carName} created successfully!`);
     }
   };
 

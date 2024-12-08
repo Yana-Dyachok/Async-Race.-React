@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { AppDispatch } from '../../../lib/store/store';
 import { fetchCars } from '../../../lib/slices/car-slice';
 import { selectSelectedCar } from '../../../lib/slices/selected-car-slice';
@@ -39,6 +40,7 @@ const UpdateCar: React.FC<PageProps> = ({ page }) => {
       if (selectedCar?.id)
         updateAPICar(selectedCar.id, { name: carName, color: carColor });
       dispatch(fetchCars(page));
+      toast.success(`Car ${carName} updated successfully!`);
     }
   };
 

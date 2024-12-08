@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import Button from '../../ui/button/button';
 import { RenderControlsProps } from '../../../types/interface';
 import driveAPICar from '../../../api/drive-car';
@@ -31,6 +32,7 @@ const RenderControls: React.FC<RenderControlsProps> = ({
   const clickRemove = async () => {
     await dispatch(deleteCar(car.id));
     dispatch(fetchCars(currentPage));
+    toast.success(`Car ${car.name} removed successfully!`);
   };
 
   const clickSelect = () => {

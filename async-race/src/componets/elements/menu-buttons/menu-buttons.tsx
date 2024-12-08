@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { AppDispatch } from '../../../lib/store/store';
 import { fetchCars } from '../../../lib/slices/car-slice';
 import Button from '../../ui/button/button';
@@ -12,17 +13,20 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const clickReset = () => {
     setIsDisabled(!isDisabled);
+    toast.success('Cars reset');
   };
   const clickRace = () => {
     setIsDisabled(!isDisabled);
+    toast.success('Cars race');
   };
 
   const generateCars = async () => {
     try {
       generateHundredCars();
       dispatch(fetchCars(page));
+      toast.success('100 cars generated successfully!');
     } catch (error) {
-      console.error('Error generating cars:', error);
+      toast.error(`Error generating cars:', ${error}`);
     }
   };
 
