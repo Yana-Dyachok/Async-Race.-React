@@ -8,7 +8,10 @@ import engineControlAPI from '../../../api/engine-control';
 import { AppDispatch } from '../../../lib/store/store';
 import { deleteCar, fetchCars } from '../../../lib/slices/car-slice';
 import { setSelectedCar } from '../../../lib/slices/selected-car-slice';
-import { setAnimationCar } from '../../../lib/slices/animation-slice';
+import {
+  setAnimationCar,
+  clearAnimation,
+} from '../../../lib/slices/animation-slice';
 import getAnimationDuration from '../../../utils/animation-duration';
 import styles from './render-controls.module.scss';
 
@@ -26,8 +29,9 @@ const RenderControls: React.FC<RenderControlsProps> = ({
       dispatch(
         setAnimationCar({ carId: car.id, isAnimation: false, duration: 0 }),
       );
+      dispatch(clearAnimation(car.id));
     } catch (error) {
-      console.error('Failed to start the engine:', error);
+      throw new Error(`Failed to stop the engine:, ${error}`);
     }
   };
 
@@ -41,16 +45,18 @@ const RenderControls: React.FC<RenderControlsProps> = ({
       if (!status.success) {
         dispatch(
           setAnimationCar({ carId: car.id, isAnimation: false, duration }),
+          toast.error(`Unfortunately, car ${car.name} broke down!`),
         );
       }
     } catch (error) {
-      console.error('Failed to start the engine:', error);
+      throw new Error(`Failed to start the engine:, ${error}`);
     }
   };
 
   const clickRemove = async () => {
     await dispatch(deleteCar(car.id));
     dispatch(fetchCars(currentPage));
+    dispatch(clearAnimation(car.id));
     toast.success(`Car ${car.name} removed successfully!`);
   };
 
