@@ -8,6 +8,8 @@ import engineControlAPI from '../../../api/engine-control';
 import { AppDispatch } from '../../../lib/store/store';
 import { deleteCar, fetchCars } from '../../../lib/slices/car-slice';
 import { setSelectedCar } from '../../../lib/slices/selected-car-slice';
+import { setAnimationCar } from '../../../lib/slices/animation-slice';
+import getAnimationDuration from '../../../utils/animation-duration';
 import styles from './render-controls.module.scss';
 
 const RenderControls: React.FC<RenderControlsProps> = ({
@@ -17,16 +19,33 @@ const RenderControls: React.FC<RenderControlsProps> = ({
   const dispatch = useDispatch<AppDispatch>();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
-  const clickStop = () => {
-    engineControlAPI(car.id, 'stopped');
-    setIsDisabled(!isDisabled);
+  const clickStop = async () => {
+    try {
+      setIsDisabled(!isDisabled);
+      engineControlAPI(car.id, 'stopped');
+      dispatch(
+        setAnimationCar({ carId: car.id, isAnimation: false, duration: 0 }),
+      );
+    } catch (error) {
+      console.error('Failed to start the engine:', error);
+    }
   };
 
-  const clickStart = () => {
-    engineControlAPI(car.id, 'started');
-    const resp = driveAPICar(car.id);
-    console.log(resp);
-    setIsDisabled(!isDisabled);
+  const clickStart = async () => {
+    try {
+      setIsDisabled(!isDisabled);
+      const resp = await engineControlAPI(car.id, 'started');
+      const duration = getAnimationDuration(resp);
+      dispatch(setAnimationCar({ carId: car.id, isAnimation: true, duration }));
+      const status = await driveAPICar(car.id);
+      if (!status.success) {
+        dispatch(
+          setAnimationCar({ carId: car.id, isAnimation: false, duration }),
+        );
+      }
+    } catch (error) {
+      console.error('Failed to start the engine:', error);
+    }
   };
 
   const clickRemove = async () => {

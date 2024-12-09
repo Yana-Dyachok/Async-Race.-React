@@ -10,7 +10,7 @@
 .garageContent {
   display: flex;
   justify-content: space-between;
-  padding: 0.7rem 2rem 0.1rem 0;
+  padding: 0.7rem 7rem 0.1rem 0;
   filter: drop-shadow(0.5rem 0.5rem 4rem $c-white);
 }
 
@@ -26,5 +26,9 @@
 @media (max-width: 768px) {
   .carName {
     font-size: 1.5rem;
+  }
+
+  .garageContent {
+    padding: 0.7rem 5.5rem 0.1rem 0;
   }
 }

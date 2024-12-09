@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../lib/store/store';
+import { getAnimationCar } from '../../../lib/slices/animation-slice';
 import { SizesSVG } from '../../../types/types';
 import { ICar } from '../../../types/interface';
 import styles from './create-car-svg.module.scss';
@@ -9,7 +12,25 @@ interface CarSVGProps {
 }
 
 const CarSVG: React.FC<CarSVGProps> = ({ car, sizes }) => {
+  const animationCars = useSelector((state: RootState) =>
+    getAnimationCar(state),
+  );
+  const animation = animationCars.find(
+    (animationCar) => animationCar.carId === car.id,
+  );
+  const { isAnimation = false, duration = 0 } = animation || {};
+
   const { width, height } = sizes;
+
+  const animationStyle = animation
+    ? {
+        animation:
+          duration > 0
+            ? `${styles.carsAnimation} ${duration}s ease-out forwards`
+            : 'none',
+        animationPlayState: isAnimation ? 'running' : 'paused',
+      }
+    : {};
 
   return (
     <svg
@@ -22,6 +43,7 @@ const CarSVG: React.FC<CarSVGProps> = ({ car, sizes }) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 167.83 55.332"
       version="1.0"
+      style={animationStyle}
     >
       <g id="layer1" transform="translate(-227.51 -167.55)">
         <path
