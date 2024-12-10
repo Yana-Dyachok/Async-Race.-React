@@ -14,11 +14,19 @@ import {
 } from '../../../lib/slices/animation-slice';
 import getAnimationDuration from '../../../utils/animation-duration';
 import getAPICars from '../../../api/get-cars';
+import saveAPIWinner from '../../../api/save-winner';
+import Popup from '../../ui/popup/popup';
 import styles from './menu-buttons.module.scss';
 
 const MenuButtons: React.FC<PageProps> = ({ page }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [isPopupVisible, setPopupVisible] = useState<boolean>(false);
+  const [text, setText] = useState<string>('');
+
+  const onClose = () => {
+    setPopupVisible(false);
+  };
 
   const getAllCars = async () => {
     try {
@@ -62,16 +70,24 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
       const cars = await getAllCars();
       if (!cars || cars.length === 0) {
         toast.info('No cars to race!');
-        setIsDisabled(false);
+        setIsDisabled(!isDisabled);
         return;
       }
+
+      const raceResults: { carId: number; name: string; duration: number }[] =
+        [];
+
       const racePromises = cars.map(async (car) => {
         try {
           const resp = await engineControlAPI(car.id, 'started');
           const duration = getAnimationDuration(resp);
+
+          raceResults.push({ carId: car.id, name: car.name, duration });
+
           dispatch(
             setAnimationCar({ carId: car.id, isAnimation: true, duration }),
           );
+
           const status = await driveAPICar(car.id);
           if (!status.success) {
             dispatch(
@@ -83,9 +99,23 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
           toast.error(`Failed to process car ${car.name}, ${carError}`);
         }
       });
+
       await Promise.all(racePromises);
+
+      if (raceResults.length > 0) {
+        const winner = raceResults.reduce((min, car) =>
+          car.duration < min.duration ? car : min,
+        );
+        setPopupVisible(true);
+        setText(
+          `Winner is "${winner.name}" with duration ${parseFloat(winner.duration.toFixed(2))}!`,
+        );
+        await saveAPIWinner(winner.carId, winner.duration);
+      } else {
+        toast.info('No cars finished the race!');
+      }
     } catch (error) {
-      toast.error(`Failed to race ${error}`);
+      toast.error(`Failed to race: ${error}`);
     }
   };
 
@@ -108,6 +138,7 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
         Reset
       </Button>
       <Button onClick={generateCars}>Generate</Button>
+      {isPopupVisible && <Popup text={text} onClose={onClose} />}
     </div>
   );
 };

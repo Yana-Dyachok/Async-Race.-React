@@ -1,0 +1,54 @@
+@import '../../../styles/colors.scss';
+.winnersBlock {
+  padding: 1rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.3rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+
+  :global(.MuiPaginationItem-root) {
+    color: inherit;
+    font-size: 2.2rem;
+  }
+  :global(.MuiPaginationItem-root:hover) {
+    background-color: $c-violet-100;
+    cursor: pointer;
+  }
+  :global(.MuiPaginationItem-root.MuiPaginationItem-root.Mui-selected) {
+    background-color: $c-violet-500;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  :global(.MuiPaginationItem-previousNext) {
+    color: inherit;
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    padding: 1rem 0;
+
+    :global(.MuiPaginationItem-root) {
+      font-size: 1.6rem;
+    }
+  }
+  .title {
+    text-align: center;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .pagination {
+    :global(.MuiPaginationItem-root) {
+      font-size: 1.2rem;
+    }
+  }
+}

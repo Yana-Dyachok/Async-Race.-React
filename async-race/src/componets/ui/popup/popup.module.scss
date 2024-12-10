@@ -28,12 +28,12 @@
   font-size: 1.8rem;
   text-align: center;
   color: $c-white;
-  background-color: $c-violet-500;
+  background-color: rgba($c-violet-500, 0.6);
   border-radius: 1rem;
 }
 
 .popupText {
-  padding: 2rem;
+  padding: 1rem;
   font-size: 3rem;
 }
 

@@ -67,8 +67,3 @@ export interface IWinnerSort {
 export interface IDriveResponse {
   success: true | false;
 }
-
-export interface IButtonEvents {
-  target: HTMLButtonElement;
-  carId: number;
-}
