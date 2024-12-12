@@ -2,7 +2,7 @@
 A SPA to manage the collection of cars, operate their engines, and show race statistics.
 - [Task](https://github.com/rolling-scopes-school/tasks/tree/master/stage2/tasks/async-race)
 - [Demo](https://www.youtube.com/watch?v=sTXtlBLh-Ts)
-- [Deploy]() 
+- [Deploy](https://async-race-react-diachok.netlify.app) 
 
 ## The technology stack used:
    - TypeScript
