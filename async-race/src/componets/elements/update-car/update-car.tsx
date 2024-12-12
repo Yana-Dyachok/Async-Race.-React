@@ -34,13 +34,19 @@ const UpdateCar: React.FC<PageProps> = ({ page }) => {
     setIsPopupVisible(false);
   };
 
-  const updateCar = () => {
-    if (carName === '') setIsPopupVisible(true);
-    else {
-      if (selectedCar?.id)
-        updateAPICar(selectedCar.id, { name: carName, color: carColor });
-      dispatch(fetchCars(page));
-      toast.success(`Car ${carName} updated successfully!`);
+  const updateCar = async () => {
+    if (carName === '') {
+      setIsPopupVisible(true);
+      return;
+    }
+    try {
+      if (selectedCar?.id) {
+        await updateAPICar(selectedCar.id, { name: carName, color: carColor });
+        await dispatch(fetchCars(page));
+        toast.success(`Car ${carName} updated successfully!`);
+      }
+    } catch (error) {
+      toast.error(`Failed to update car: ${error}`);
     }
   };
 

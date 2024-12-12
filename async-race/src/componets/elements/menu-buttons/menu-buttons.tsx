@@ -40,13 +40,13 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
 
   const clickReset = async () => {
     try {
-      setIsRaceDisabled(false);
-      setIsResetDisabled(true);
       const cars = await getAllCars();
       if (!cars || cars.length === 0) {
         toast.info('No cars to reset!');
         return;
       }
+      setIsRaceDisabled(false);
+      setIsResetDisabled(true);
       const resetPromises = cars.map(async (car) => {
         try {
           engineControlAPI(car.id, 'stopped');
@@ -66,16 +66,14 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
 
   const clickRace = async () => {
     try {
-      setIsRaceDisabled(true);
-      setIsResetDisabled(false);
-      toast.success('Cars race started!');
-
       const cars = await getAllCars();
       if (!cars || cars.length === 0) {
         toast.info('No cars to race!');
         return;
       }
-
+      setIsRaceDisabled(true);
+      setIsResetDisabled(false);
+      toast.success('Cars race started!');
       const raceResults: { carId: number; name: string; duration: number }[] =
         [];
 
@@ -123,11 +121,11 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
 
   const generateCars = async () => {
     try {
-      generateHundredCars();
-      dispatch(fetchCars(page));
+      await generateHundredCars();
+      await dispatch(fetchCars(page));
       toast.success('100 cars generated successfully!');
     } catch (error) {
-      toast.error(`Error generating cars:', ${error}`);
+      toast.error(`Error generating cars: ${error}`);
     }
   };
 

@@ -23,10 +23,19 @@ const CreateCar: React.FC<PageProps> = ({ page }) => {
   const createCar = async () => {
     if (carName === '') {
       setPopupVisible(true);
-    } else {
-      await dispatch(addCar({ name: carName, color: carColor }));
-      dispatch(fetchCars(page));
-      toast.success(`Car ${carName} created successfully!`);
+      return;
+    }
+
+    try {
+      const result = await dispatch(addCar({ name: carName, color: carColor }));
+      if (addCar.fulfilled.match(result)) {
+        dispatch(fetchCars(page));
+        toast.success(`Car ${carName} created successfully!`);
+      } else {
+        toast.error('Failed to create car.');
+      }
+    } catch (error) {
+      toast.error(`Failed to create car: ${error}`);
     }
   };
 

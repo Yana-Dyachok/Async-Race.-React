@@ -17,6 +17,7 @@
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
+  z-index: 2;
 }
 
 .popupContent {
@@ -28,7 +29,7 @@
   font-size: 1.8rem;
   text-align: center;
   color: $c-white;
-  background-color: rgba($c-violet-500, 0.6);
+  background-color: $c-violet-500;
   border-radius: 1rem;
 }
 

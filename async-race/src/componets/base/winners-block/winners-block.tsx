@@ -25,13 +25,19 @@ const WinnersBlock: React.FC = () => {
     <div className={styles.winnersBlock}>
       <h2 className={styles.title}>{`Winners(${totalItems})`}</h2>
       <h3 className={styles.title}>{`Page#${page}`}</h3>
-      <WinnersTable winners={items} />
-      <Pagination
-        className={styles.pagination}
-        count={Math.ceil(+totalItems / 10)}
-        page={page}
-        onChange={handleChange}
-      />
+      {items.length > 0 ? (
+        <>
+          <WinnersTable winners={items} />
+          <Pagination
+            className={styles.pagination}
+            count={Math.ceil(+totalItems / 10)}
+            page={page}
+            onChange={handleChange}
+          />
+        </>
+      ) : (
+        <h2 className={styles.title}>There are no winners</h2>
+      )}
     </div>
   );
 };

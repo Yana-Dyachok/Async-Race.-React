@@ -16,7 +16,7 @@
 
 .carName {
   font-size: 1.7rem;
-} 
+}
 
 .garageFlag {
   width: 5rem;
@@ -24,7 +24,7 @@
   background-image: url('../../../assets/svg/flag-icon.svg');
   background-repeat: no-repeat;
   background-size: 5rem;
-  z-index: 2;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {
