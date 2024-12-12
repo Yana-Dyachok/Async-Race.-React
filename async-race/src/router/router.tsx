@@ -17,9 +17,6 @@ const router = createBrowserRouter(
       <Route path="/*" element={<NotFoundPage />} handle={{ hidePath: true }} />
     </Route>,
   ),
-  {
-    basename: '/Async-Race-React',
-  },
 );
 
 export default router;

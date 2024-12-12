@@ -10,12 +10,8 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <h1>Async Race</h1>
       <div className={styles.buttons}>
-        <Button to={`/Async-Race-React/garage?page=${garagePage}`}>
-          Garage
-        </Button>
-        <Button to={`/Async-Race-React/winners?page=${winnersPage}`}>
-          Winners
-        </Button>
+        <Button to={`/garage?page=${garagePage}`}>Garage</Button>
+        <Button to={`/winners?page=${winnersPage}`}>Winners</Button>
       </div>
     </header>
   );

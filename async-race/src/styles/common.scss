@@ -1,4 +1,4 @@
-@use './colors.scss' as colors; 
+@use './colors.scss' as colors;
 @use './fonts' as fonts;
 
 html {
@@ -16,7 +16,11 @@ body {
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
   color: colors.$c-white;
-  background-image: linear-gradient(to right, colors.$c-black, colors.$c-violet-800);
+  background-image: linear-gradient(
+    to right,
+    colors.$c-black,
+    colors.$c-violet-800
+  );
 }
 
 @media (max-width: 768px) {
