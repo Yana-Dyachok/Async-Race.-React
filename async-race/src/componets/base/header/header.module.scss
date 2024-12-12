@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -16,5 +15,16 @@
 @media (max-width: 720px) {
   .header {
     font-size: 1.6rem;
+  }
+
+  .buttons {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .header {
+    font-size: 1.2rem;
+    gap: 1rem;
   }
 }

@@ -20,7 +20,8 @@ import styles from './menu-buttons.module.scss';
 
 const MenuButtons: React.FC<PageProps> = ({ page }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [isResetDisabled, setIsResetDisabled] = useState<boolean>(true);
+  const [isRaceDisabled, setIsRaceDisabled] = useState<boolean>(false);
   const [isPopupVisible, setPopupVisible] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
 
@@ -36,13 +37,14 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
       throw new Error(`Failed to get cars:, ${error}`);
     }
   };
+
   const clickReset = async () => {
     try {
-      setIsDisabled(!isDisabled);
+      setIsRaceDisabled(false);
+      setIsResetDisabled(true);
       const cars = await getAllCars();
       if (!cars || cars.length === 0) {
         toast.info('No cars to reset!');
-        setIsDisabled(false);
         return;
       }
       const resetPromises = cars.map(async (car) => {
@@ -64,13 +66,13 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
 
   const clickRace = async () => {
     try {
-      setIsDisabled(!isDisabled);
+      setIsRaceDisabled(true);
+      setIsResetDisabled(false);
       toast.success('Cars race started!');
 
       const cars = await getAllCars();
       if (!cars || cars.length === 0) {
         toast.info('No cars to race!');
-        setIsDisabled(!isDisabled);
         return;
       }
 
@@ -131,10 +133,10 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
 
   return (
     <div className={styles.menuButtons}>
-      <Button disabled={isDisabled} onClick={clickRace}>
+      <Button disabled={isRaceDisabled} onClick={clickRace}>
         Race
       </Button>
-      <Button disabled={!isDisabled} onClick={clickReset}>
+      <Button disabled={isResetDisabled} onClick={clickReset}>
         Reset
       </Button>
       <Button onClick={generateCars}>Generate</Button>
