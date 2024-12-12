@@ -1,6 +1,10 @@
 @import '../../../styles/colors.scss';
 .winnersBlock {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
@@ -17,15 +21,18 @@
     color: inherit;
     font-size: 2.2rem;
   }
+
   :global(.MuiPaginationItem-root:hover) {
     background-color: $c-violet-100;
     cursor: pointer;
   }
+
   :global(.MuiPaginationItem-root.MuiPaginationItem-root.Mui-selected) {
     background-color: $c-violet-500;
     font-weight: bold;
     cursor: pointer;
   }
+
   :global(.MuiPaginationItem-previousNext) {
     color: inherit;
   }
@@ -39,6 +46,7 @@
       font-size: 1.6rem;
     }
   }
+
   .title {
     text-align: center;
     font-size: 2rem;

@@ -4,7 +4,7 @@ import Pagination from '@mui/material/Pagination';
 import { AppDispatch, RootState } from '../../../lib/store/store';
 import { getWinners } from '../../../lib/slices/winners-slice';
 import WinnersTable from '../../elements/winners-table/winners-table';
-import styles from '../track-block/track-block.module.scss';
+import styles from '../winners-block/winners-block.module.scss';
 
 const WinnersBlock: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,10 +25,7 @@ const WinnersBlock: React.FC = () => {
     <div className={styles.winnersBlock}>
       <h2 className={styles.title}>{`Winners(${totalItems})`}</h2>
       <h3 className={styles.title}>{`Page#${page}`}</h3>
-      {items.map((winner) => (
-        <WinnersTable key={winner.id} winner={winner} />
-      ))}
-
+      <WinnersTable winners={items} />
       <Pagination
         className={styles.pagination}
         count={Math.ceil(+totalItems / 10)}

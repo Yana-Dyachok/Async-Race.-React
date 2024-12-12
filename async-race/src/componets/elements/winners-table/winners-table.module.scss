@@ -1,0 +1,33 @@
+@import '../../../styles/colors.scss';
+.table {
+    max-width: 70rem;
+    margin-top: 2rem;
+    color: $c-white;
+    font-size: 2rem;
+    border-radius: 0.2rem;
+    text-align: center;
+    white-space: wrap;
+    border-collapse: collapse;
+}
+
+.th,
+.td {
+    border: 0.0625rem solid rgb(243, 232, 232);
+    padding: 1rem;
+    text-align: center;
+}
+
+.th {
+    background-color: $c-violet-500;
+}
+
+@media (max-width: 720px) {
+   
+    .th {
+        padding: 0.5rem;
+    }
+    
+    .td {
+        padding: 0.5rem;
+    }
+}
