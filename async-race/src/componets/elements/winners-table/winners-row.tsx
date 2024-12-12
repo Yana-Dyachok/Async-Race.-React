@@ -12,7 +12,7 @@ const WinnerRow: React.FC<WinnerRowProps> = ({ winner }) => {
     <tr className={styles.tr}>
       <td className={styles.td}>{winner.car.id}</td>
       <td className={styles.td}>
-        <div>
+        <div className={styles.winnersCar}>
           {' '}
           <CarSVG car={winner.car} sizes={{ width: '60px', height: '30px' }} />
         </div>

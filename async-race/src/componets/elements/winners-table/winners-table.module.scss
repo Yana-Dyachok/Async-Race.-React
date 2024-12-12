@@ -21,6 +21,10 @@
   background-color: $c-violet-500;
 }
 
+.winnersCar {
+  filter: drop-shadow(0.7rem 0.7rem 3rem $c-white);
+}
+
 @mixin arrow {
   min-width: 2rem;
   height: 4rem;
@@ -30,8 +34,8 @@
   background-color: $c-white;
   cursor: pointer;
   &:hover {
-  transform: scale(1.1);
-  background-color: $c-violet-100
+    transform: scale(1.1);
+    background-color: $c-violet-100;
   }
 }
 

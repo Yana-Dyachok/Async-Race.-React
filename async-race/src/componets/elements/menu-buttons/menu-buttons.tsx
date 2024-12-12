@@ -45,22 +45,26 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
         toast.info('No cars to reset!');
         return;
       }
+
       setIsRaceDisabled(false);
       setIsResetDisabled(true);
+
       const resetPromises = cars.map(async (car) => {
         try {
-          engineControlAPI(car.id, 'stopped');
+          await engineControlAPI(car.id, 'stopped');
           dispatch(
             setAnimationCar({ carId: car.id, isAnimation: false, duration: 0 }),
           );
           dispatch(clearAnimation(car.id));
         } catch (error) {
-          throw new Error(`Failed to reset the engine:, ${error}`);
+          console.error(`Failed to reset the engine for car ${car.id}:`, error);
+          throw error;
         }
-        await Promise.all(resetPromises);
       });
+      await Promise.all(resetPromises);
     } catch (error) {
-      throw new Error(`Failed to reset the engine:, ${error}`);
+      console.error('Failed to reset the engine:', error);
+      toast.error(`Failed to reset the engine: ${error}`);
     }
   };
 
@@ -108,7 +112,7 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
         );
         setPopupVisible(true);
         setText(
-          `Winner is "${winner.name}" with duration ${parseFloat(winner.duration.toFixed(2))}!`,
+          `Winner is "${winner.name}" with duration ${parseFloat(winner.duration.toFixed(2))}s!`,
         );
         await saveAPIWinner(winner.carId, winner.duration);
       } else {
