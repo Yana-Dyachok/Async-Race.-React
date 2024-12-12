@@ -1,10 +1,10 @@
-@import '../../../styles/colors.scss';
+@use '../../../styles/colors.scss' as colors; 
 
 .inputColor {
   width: 6rem;
   height: 5rem;
   cursor: pointer;
-  border: 0.1rem solid $c-violet-100;
+  border: 0.1rem solid colors.$c-violet-100;
 }
 
 @media (max-width: 720px) {

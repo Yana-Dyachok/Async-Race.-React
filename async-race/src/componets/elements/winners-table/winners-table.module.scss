@@ -1,8 +1,9 @@
-@import '../../../styles/colors.scss';
+@use '../../../styles/colors.scss' as colors; 
+
 .table {
   max-width: 70rem;
   margin-top: 2rem;
-  color: $c-white;
+  color: colors.$c-white;
   font-size: 2rem;
   border-radius: 0.2rem;
   text-align: center;
@@ -18,11 +19,11 @@
 }
 
 .th {
-  background-color: $c-violet-500;
+  background-color: colors.$c-violet-500;
 }
 
 .winnersCar {
-  filter: drop-shadow(0.7rem 0.7rem 3rem $c-white);
+  filter: drop-shadow(0.7rem 0.7rem 3rem colors.$c-white);
 }
 
 @mixin arrow {
@@ -31,11 +32,11 @@
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-position: center;
-  background-color: $c-white;
+  background-color: colors.$c-white;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
-    background-color: $c-violet-100;
+    background-color: colors.$c-violet-100;
   }
 }
 

@@ -1,5 +1,5 @@
-@import './fonts.scss';
-@import './colors.scss';
+@use './colors.scss' as colors; 
+@use './fonts' as fonts;
 
 html {
   scroll-behavior: smooth;
@@ -9,14 +9,14 @@ html {
 body {
   margin: 0 auto;
   padding: 1rem;
-  font-family: 'salina trial';
+  font-family: fonts.$salina-trial;
   font-size: 1.5rem;
   font-weight: 400;
   -webkit-font-smoothing: auto;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  color: $c-white;
-  background-image: linear-gradient(to right, $c-black, $c-violet-800);
+  color: colors.$c-white;
+  background-image: linear-gradient(to right, colors.$c-black, colors.$c-violet-800);
 }
 
 @media (max-width: 768px) {

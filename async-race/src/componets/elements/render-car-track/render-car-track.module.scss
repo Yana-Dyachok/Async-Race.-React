@@ -1,17 +1,17 @@
-@import '../../../styles/colors.scss';
+@use '../../../styles/colors.scss' as colors; 
 
 .garageTrack {
   padding: 0.5rem 0.5rem 0;
   border-bottom-style: dashed;
   border-bottom-width: 0.5rem;
-  border-bottom-color: $c-white;
+  border-bottom-color: colors.$c-white;
 }
 
 .garageContent {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 7rem 0.1rem 0;
-  filter: drop-shadow(0.5rem 0.5rem 6rem $c-white);
+  filter: drop-shadow(0.5rem 0.5rem 6rem colors.$c-white);
 }
 
 .carName {

@@ -1,4 +1,4 @@
-@import '../../../styles/colors.scss';
+@use '../../../styles/colors.scss' as colors; 
 
 .popup {
   width: 100%;
@@ -28,8 +28,8 @@
   position: relative;
   font-size: 1.8rem;
   text-align: center;
-  color: $c-white;
-  background-color: $c-violet-500;
+  color: colors.$c-white;
+  background-color: colors.$c-violet-500;
   border-radius: 1rem;
 }
 

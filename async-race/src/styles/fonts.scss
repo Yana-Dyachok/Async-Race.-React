@@ -1,3 +1,6 @@
+$salina-trial: 'salina trial';
+$tenpounds-regular: 'tenpounds regular';
+
 @font-face {
   font-family: 'tenpounds regular';
   src:
@@ -9,7 +12,7 @@
 }
 
 @font-face {
-  font-family: 'salina trial';
+  font-family: $salina-trial;
   src:
     url('../assets/fonts/Salina-Trial-Regular.woff2') format('woff2'),
     url('../assets/fonts/Salina-Trial-Regular.woff') format('woff');

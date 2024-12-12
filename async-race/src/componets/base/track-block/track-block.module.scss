@@ -1,4 +1,5 @@
-@import '../../../styles/colors.scss';
+@use '../../../styles/colors.scss' as colors; 
+
 .garageTrackBlock {
   margin: 0.5rem 0;
 }
@@ -18,11 +19,11 @@
     font-size: 2.2rem;
   }
   :global(.MuiPaginationItem-root:hover) {
-    background-color: $c-violet-100;
+    background-color: colors.$c-violet-100;
     cursor: pointer;
   }
   :global(.MuiPaginationItem-root.MuiPaginationItem-root.Mui-selected) {
-    background-color: $c-violet-500;
+    background-color: colors.$c-violet-500;
     font-weight: bold;
     cursor: pointer;
   }

@@ -1,4 +1,5 @@
-@import '../../../styles/colors.scss';
+@use '../../../styles/colors.scss' as colors;
+
 .winnersBlock {
   padding: 1rem;
   display: flex;
@@ -23,12 +24,12 @@
   }
 
   :global(.MuiPaginationItem-root:hover) {
-    background-color: $c-violet-100;
+    background-color: colors.$c-violet-100;
     cursor: pointer;
   }
 
   :global(.MuiPaginationItem-root.MuiPaginationItem-root.Mui-selected) {
-    background-color: $c-violet-500;
+    background-color: colors.$c-violet-500;
     font-weight: bold;
     cursor: pointer;
   }
