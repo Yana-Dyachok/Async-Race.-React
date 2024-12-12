@@ -14,11 +14,27 @@ const WinnersBlock: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(getWinners(page));
+    dispatch(getWinners({ page }));
   }, [dispatch, page]);
 
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+  };
+
+  const sortWinsASC = () => {
+    dispatch(getWinners({ page, sort: 'wins', order: 'ASC' }));
+  };
+
+  const sortWinsDESC = () => {
+    dispatch(getWinners({ page, sort: 'wins', order: 'DESC' }));
+  };
+
+  const sortTimeASC = () => {
+    dispatch(getWinners({ page, sort: 'time', order: 'ASC' }));
+  };
+
+  const sortTimeDESC = () => {
+    dispatch(getWinners({ page, sort: 'time', order: 'DESC' }));
   };
 
   return (
@@ -27,7 +43,13 @@ const WinnersBlock: React.FC = () => {
       <h3 className={styles.title}>{`Page#${page}`}</h3>
       {items.length > 0 ? (
         <>
-          <WinnersTable winners={items} />
+          <WinnersTable
+            winners={items}
+            sortWinsASC={sortWinsASC}
+            sortWinsDESC={sortWinsDESC}
+            sortTimeASC={sortTimeASC}
+            sortTimeDESC={sortTimeDESC}
+          />
           <Pagination
             className={styles.pagination}
             count={Math.ceil(+totalItems / 10)}

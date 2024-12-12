@@ -21,6 +21,30 @@
   background-color: $c-violet-500;
 }
 
+@mixin arrow {
+  min-width: 2rem;
+  height: 4rem;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+  background-color: $c-white;
+  cursor: pointer;
+  &:hover {
+  transform: scale(1.1);
+  background-color: $c-violet-100
+  }
+}
+
+.buttonUp {
+  @include arrow();
+  mask-image: url('../../../assets/svg/arrow-up.svg');
+}
+
+.buttonDown {
+  @include arrow();
+  mask-image: url('../../../assets/svg/arrow-down.svg');
+}
+
 @media (max-width: 720px) {
   .th {
     padding: 0.5rem;

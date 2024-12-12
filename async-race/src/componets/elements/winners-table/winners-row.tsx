@@ -5,13 +5,12 @@ import styles from './winners-table.module.scss';
 
 interface WinnerRowProps {
   winner: IWinnerCars;
-  index: number;
 }
 
-const WinnerRow: React.FC<WinnerRowProps> = ({ winner, index }) => {
+const WinnerRow: React.FC<WinnerRowProps> = ({ winner }) => {
   return (
     <tr className={styles.tr}>
-      <td className={styles.td}>{index + 1}</td>
+      <td className={styles.td}>{winner.car.id}</td>
       <td className={styles.td}>
         <div>
           {' '}

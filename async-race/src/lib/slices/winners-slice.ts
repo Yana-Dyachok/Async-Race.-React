@@ -1,9 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import getAPIWinners from '../../api/get-winners';
+import { Sort, Order } from '../../types/types';
 import { IWinnersResponse } from '../../types/interface';
 
 interface WinnersState extends IWinnersResponse {
   loading: boolean;
+}
+
+interface GetWinnersProps {
+  page: number;
+  sort?: Sort;
+  order?: Order;
 }
 
 const initialState: WinnersState = {
@@ -14,8 +21,8 @@ const initialState: WinnersState = {
 
 export const getWinners = createAsyncThunk(
   'winners/getWinners',
-  async (page: number) => {
-    const response = await getAPIWinners(page);
+  async ({ page, sort, order }: GetWinnersProps) => {
+    const response = await getAPIWinners(page, sort, order);
     return response;
   },
 );
