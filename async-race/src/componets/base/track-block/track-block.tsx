@@ -1,19 +1,31 @@
 import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Pagination from '@mui/material/Pagination';
 import { AppDispatch, RootState } from '../../../lib/store/store';
 import { fetchCars } from '../../../lib/slices/car-slice';
 import RenderTrack from './render-track';
+import { PageStateProps } from '../../../types/interface';
 import styles from './track-block.module.scss';
 
-interface TrackBlockProps {
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const TrackBlock: React.FC<TrackBlockProps> = ({ page, setPage }) => {
+const TrackBlock: React.FC<PageStateProps> = ({ page, setPage }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { items, totalItems } = useSelector((state: RootState) => state.cars);
+  const navigate = useNavigate();
+  const { pathname, search } = useLocation();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(search);
+    const initialPage = urlParams.get('page');
+    if (initialPage && !isNaN(Number(initialPage))) {
+      setPage(Number(initialPage));
+    } else {
+      setPage(1);
+      navigate(`${pathname}?page=1`, { replace: true });
+    }
+    const currentPage = urlParams.get('page') || '1';
+    localStorage.setItem('garagePage', currentPage);
+  }, [search, navigate, pathname, setPage]);
 
   useEffect(() => {
     dispatch(fetchCars(page));
@@ -21,6 +33,7 @@ const TrackBlock: React.FC<TrackBlockProps> = ({ page, setPage }) => {
 
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+    navigate(`${pathname}?page=${value}`);
   };
 
   return (

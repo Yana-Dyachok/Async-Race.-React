@@ -22,6 +22,11 @@ export interface PageProps {
   page: number;
 }
 
+export interface PageStateProps {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
 export interface ICar {
   name: CarName;
   color: CarColor;

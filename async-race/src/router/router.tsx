@@ -12,6 +12,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<Layout />}>
       <Route path="/" element={<GaragePage />} />
+      <Route path="/garage" element={<GaragePage />} />
       <Route path="/winners" element={<WinnersPage />} />
       <Route path="/*" element={<NotFoundPage />} handle={{ hidePath: true }} />
     </Route>,
