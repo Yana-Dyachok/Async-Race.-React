@@ -86,8 +86,6 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
           const resp = await engineControlAPI(car.id, 'started');
           const duration = getAnimationDuration(resp);
 
-          raceResults.push({ carId: car.id, name: car.name, duration });
-
           dispatch(
             setAnimationCar({ carId: car.id, isAnimation: true, duration }),
           );
@@ -98,6 +96,10 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
               setAnimationCar({ carId: car.id, isAnimation: false, duration }),
             );
             toast.error(`Unfortunately, car ${car.name} broke down!`);
+          }
+
+          if (status.success) {
+            raceResults.push({ carId: car.id, name: car.name, duration });
           }
         } catch (carError) {
           toast.error(`Failed to process car ${car.name}, ${carError}`);
