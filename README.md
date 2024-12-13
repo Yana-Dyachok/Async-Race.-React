@@ -1,8 +1,9 @@
-# Async-Race.-React
+# Async-Race-React
 A SPA to manage the collection of cars, operate their engines, and show race statistics.
 - [Task](https://github.com/rolling-scopes-school/tasks/tree/master/stage2/tasks/async-race)
 - [Demo](https://www.youtube.com/watch?v=sTXtlBLh-Ts)
 - [Deploy](https://async-race-react-diachok.netlify.app) 
+- [Server](https://github.com/mikhama/async-race-api?tab=readme-ov-file)
 
 ## The technology stack used:
    - TypeScript
@@ -53,11 +54,7 @@ https://github.com/Yana-Dyachok/async-race-api.git
 ```
 cd async-race-api 
 ```
-3.  Move to the directory
-```
-cd async-race-api
-```
-4.  Running application
+3.  Running application
 ```
 npm run start
 ```
