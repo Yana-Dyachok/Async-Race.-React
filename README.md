@@ -1,17 +1,10 @@
 # Async-Race-React
 A SPA to manage the collection of cars, operate their engines, and show race statistics.
 - [Task](https://github.com/rolling-scopes-school/tasks/tree/master/stage2/tasks/async-race)
-- [Demo](https://www.youtube.com/watch?v=sTXtlBLh-Ts)
+- [Server Mock Repo](https://github.com/mikhama/async-race-api) or in my [repository](https://github.com/Yana-Dyachok/async-race-api)
+- [Demo Video](https://youtu.be/sTXtlBLh-Ts)
 - [Deploy](https://async-race-react-diachok.netlify.app) 
-- [Server](https://github.com/mikhama/async-race-api?tab=readme-ov-file)
 
-## The technology stack used:
-   - TypeScript
-   - React, React Router
-   - Redux
-   - Vite
-   - Eslint, Prettier, Husky
-   - SCSS, Styled Components, Material UI
 ## How to install
 
 1.  Clone this repository
@@ -45,12 +38,9 @@ npm run dev
 - press c + enter to clear console
 - press q + enter to quit
 
-### N.B! Clone repo with a server and keep the server running during functionality review.
-1.  Clone this repository
-```
-https://github.com/Yana-Dyachok/async-race-api.git
-```
-2.  Move to the cloned repository
+### N.B! Keep the server running during functionality review.
+1.  Open new terminal
+2.  Move to the directory
 ```
 cd async-race-api 
 ```
@@ -58,6 +48,23 @@ cd async-race-api
 ```
 npm run start
 ```
+
+## The technology stack used:
+   - TypeScript
+   - React, React Router
+   - Redux
+   - Vite
+   - Eslint, Prettier, Husky
+   - SCSS, Styled Components, Material UI
+   
+## 🛠️ Technical Implementation
+
+- Implement CRUD operations for cars using the provided server mock.
+- Design UI elements for car management and race controls.
+- Utilize fetch for server communication, and handle promises for asynchronous tasks.
+- Create animations for car movements using JavaScript and CSS.
+- Ensure responsiveness and compatibility across different devices and browsers.
+
 ## Scripts
  Scripts                  |   instructions                         | Comands
 --------------------------|:---------------------------------------|:-----------------------------
