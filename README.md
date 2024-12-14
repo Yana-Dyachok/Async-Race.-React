@@ -74,3 +74,9 @@ Vite                      | compiles files and builds the app:     | npm run bui
 //                        | create a local server for development: | npm run dev 
 Prettier                  | checks and formats files:              | npm run format
 Husky                     | setting up Git hooks:                  | npm run prepare
+
+![kl](https://github.com/user-attachments/assets/f83e1406-40f9-400e-8069-c02d6ce76328)
+![ty](https://github.com/user-attachments/assets/83a4f6e5-4f46-45b6-b62d-f90fad2cac94)
+
+
+
