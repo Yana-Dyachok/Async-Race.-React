@@ -1,4 +1,4 @@
-import { GARAGE__LINK } from '../types/const';
+import { GARAGE__LINK } from './const';
 
 const deleteAPICar = async (id: number): Promise<void> => {
   try {

@@ -1,5 +1,5 @@
 import { IDriveResponse } from '../types/interface';
-import { ENGINE__LINK } from '../types/const';
+import { ENGINE__LINK } from './const';
 
 const driveAPICar = async (id: number): Promise<IDriveResponse> => {
   const response: Response = await fetch(

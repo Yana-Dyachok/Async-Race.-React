@@ -114,7 +114,7 @@ const MenuButtons: React.FC<PageProps> = ({ page }) => {
         );
         setPopupVisible(true);
         setText(
-          `Winner is "${winner.name}" with duration ${parseFloat(winner.duration.toFixed(2))}s!`,
+          `Winner is "${winner.name}" with duration ${Math.floor(winner.duration * 100) / 100}s!`,
         );
         await saveAPIWinner(winner.carId, winner.duration);
       } else {

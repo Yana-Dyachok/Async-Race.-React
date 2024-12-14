@@ -1,4 +1,4 @@
-import { WINNERS__LINK } from '../types/const';
+import { WINNERS__LINK } from './const';
 import { IWinnersResponse, IWinner, IWinnerCars } from '../types/interface';
 import { Sort, Order } from '../types/types';
 import getAPICar from './get-car';

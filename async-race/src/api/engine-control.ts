@@ -1,5 +1,5 @@
 import { IEngineResponse } from '../types/interface';
-import { ENGINE__LINK } from '../types/const';
+import { ENGINE__LINK } from './const';
 
 const engineControlAPI = async (
   id: number,

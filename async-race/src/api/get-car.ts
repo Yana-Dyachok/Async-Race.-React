@@ -1,5 +1,5 @@
 import { ICar } from '../types/interface';
-import { GARAGE__LINK } from '../types/const';
+import { GARAGE__LINK } from './const';
 
 const getAPICar = async (id: number): Promise<ICar> => {
   try {

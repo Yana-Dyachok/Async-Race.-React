@@ -1,5 +1,5 @@
 import { IWinner } from '../types/interface';
-import { WINNERS__LINK } from '../types/const';
+import { WINNERS__LINK } from './const';
 
 const updateAPIWinner = async (body: IWinner): Promise<IWinner> =>
   (

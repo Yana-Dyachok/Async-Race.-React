@@ -19,7 +19,7 @@ const WinnerRow: React.FC<WinnerRowProps> = ({ winner }) => {
       </td>
       <td className={styles.td}>{winner.car.name}</td>
       <td className={styles.td}>{winner.wins}</td>
-      <td className={styles.td}>{parseFloat(winner.time.toFixed(2))}</td>
+      <td className={styles.td}>{Math.floor(winner.time * 100) / 100}</td>
     </tr>
   );
 };
