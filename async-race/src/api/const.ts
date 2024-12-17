@@ -1,6 +1,6 @@
-//const LOCAL_URL = 'http://127.0.0.1:3000';
+const LOCAL_URL = 'http://127.0.0.1:3000';
 const PROD_URL = 'https://async-race-api.up.railway.app';
-const LOCAL_URL = 'https://async-race-api.up.railway.app';
+
 export const LINK =
   window.location.hostname === 'localhost' ||
   window.location.hostname === '127.0.0.1'
