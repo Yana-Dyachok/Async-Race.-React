@@ -1,5 +1,5 @@
+import { IWinner, IWinnersResponse, IWinnerCars } from '../types/interface';
 import { WINNERS__LINK } from './const';
-import { IWinnersResponse, IWinner, IWinnerCars } from '../types/interface';
 import { Sort, Order } from '../types/types';
 import getAPICar from './get-car';
 import sortWinners from '../utils/sort-winners';
@@ -20,14 +20,19 @@ const getAPIWinners = async (
     throw new Error('X-Total-Count is null');
   }
 
-  const winnersAndCars: IWinnerCars[] = await Promise.all(
-    items.map(
-      async (winner: IWinner): Promise<IWinnerCars> => ({
-        ...winner,
-        car: await getAPICar(winner.id),
+  const winnersAndCars: IWinnerCars[] = (
+    await Promise.all(
+      items.map(async (winner: IWinner): Promise<IWinnerCars | null> => {
+        try {
+          const car = await getAPICar(winner.id);
+          if (!car) return null;
+          return { ...winner, car };
+        } catch {
+          return null;
+        }
       }),
-    ),
-  );
+    )
+  ).filter((winner): winner is IWinnerCars => winner !== null);
 
   return {
     items: winnersAndCars,

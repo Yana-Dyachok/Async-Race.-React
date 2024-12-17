@@ -65,7 +65,7 @@ const WinnersBlock: React.FC = () => {
     <div className={styles.winnersBlock}>
       <h2 className={styles.title}>{`Winners(${totalItems})`}</h2>
       <h3 className={styles.title}>{`Page#${page}`}</h3>
-      {items.length > 0 ? (
+      {+totalItems > 0 ? (
         <>
           <WinnersTable
             winners={items}

@@ -40,7 +40,7 @@ const TrackBlock: React.FC<PageStateProps> = ({ page, setPage }) => {
     <div>
       <h2 className={styles.title}>{`Garage(${totalItems})`}</h2>
       <h3 className={styles.title}>{`Page#${page}`}</h3>
-      {items.length > 0 ? (
+      {+totalItems > 0 ? (
         <>
           {items.map((car) => (
             <RenderTrack car={car} currentPage={page} key={car.id} />

@@ -1,15 +1,20 @@
 import { ICar } from '../types/interface';
 import { GARAGE__LINK } from './const';
 
-const getAPICar = async (id: number): Promise<ICar> => {
+const getAPICar = async (id: number): Promise<ICar | null> => {
   try {
     const response: Response = await fetch(`${GARAGE__LINK}/${id}`);
+    if (response.status === 404) {
+      return null;
+    }
     if (!response.ok) {
       throw new Error('Failed to fetch car by ID');
     }
-    return response.json();
+    return await response.json();
   } catch (error) {
-    throw new Error(`Error fetching car by ID ${error}`);
+    console.error(`Error fetching car by ID ${id}:`, error);
+    return null;
   }
 };
+
 export default getAPICar;

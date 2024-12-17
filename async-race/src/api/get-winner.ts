@@ -5,6 +5,7 @@ const getAPIWinner = async (id: number): Promise<IWinner> => {
   try {
     const response: Response = await fetch(`${WINNERS__LINK}/${id}`);
     if (!response.ok) {
+      console.log('cannt find');
       throw new Error('Failed to fetch winner by ID');
     }
     return response.json();
