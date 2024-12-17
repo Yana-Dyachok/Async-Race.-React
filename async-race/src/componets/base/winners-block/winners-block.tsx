@@ -5,6 +5,7 @@ import Pagination from '@mui/material/Pagination';
 import { AppDispatch, RootState } from '../../../lib/store/store';
 import { getWinners } from '../../../lib/slices/winners-slice';
 import WinnersTable from '../../elements/winners-table/winners-table';
+import Loader from '../../ui/loader/loader';
 import styles from '../winners-block/winners-block.module.scss';
 
 const WinnersBlock: React.FC = () => {
@@ -13,7 +14,7 @@ const WinnersBlock: React.FC = () => {
   const urlParams = useMemo(() => new URLSearchParams(search), [search]);
   const [page, setPage] = useState(Number(urlParams.get('page')) || 1);
   const dispatch = useDispatch<AppDispatch>();
-  const { items, totalItems } = useSelector(
+  const { items, totalItems, loading } = useSelector(
     (state: RootState) => state.winners,
   );
 
@@ -34,7 +35,7 @@ const WinnersBlock: React.FC = () => {
   useEffect(() => {
     const sorted = JSON.parse(localStorage.getItem('sorted') || '[]');
     dispatch(getWinners({ page, sort: sorted[0], order: sorted[1] }));
-  }, [dispatch, page]);
+  }, [dispatch, page, totalItems]);
 
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -63,26 +64,32 @@ const WinnersBlock: React.FC = () => {
 
   return (
     <div className={styles.winnersBlock}>
-      <h2 className={styles.title}>{`Winners(${totalItems})`}</h2>
-      <h3 className={styles.title}>{`Page#${page}`}</h3>
-      {+totalItems > 0 ? (
-        <>
-          <WinnersTable
-            winners={items}
-            sortWinsASC={sortWinsASC}
-            sortWinsDESC={sortWinsDESC}
-            sortTimeASC={sortTimeASC}
-            sortTimeDESC={sortTimeDESC}
-          />
-          <Pagination
-            className={styles.pagination}
-            count={Math.ceil(+totalItems / 10)}
-            page={page}
-            onChange={handleChange}
-          />
-        </>
+      {loading ? (
+        <Loader />
       ) : (
-        <h2 className={styles.title}>There are no winners</h2>
+        <>
+          <h2 className={styles.title}>{`Winners(${totalItems})`}</h2>
+          <h3 className={styles.title}>{`Page#${page}`}</h3>
+          {+totalItems > 0 ? (
+            <>
+              <WinnersTable
+                winners={items}
+                sortWinsASC={sortWinsASC}
+                sortWinsDESC={sortWinsDESC}
+                sortTimeASC={sortTimeASC}
+                sortTimeDESC={sortTimeDESC}
+              />
+              <Pagination
+                className={styles.pagination}
+                count={Math.ceil(+totalItems / 10)}
+                page={page}
+                onChange={handleChange}
+              />
+            </>
+          ) : (
+            <h2 className={styles.title}>There are no winners</h2>
+          )}
+        </>
       )}
     </div>
   );

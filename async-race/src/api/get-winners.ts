@@ -3,6 +3,7 @@ import { WINNERS__LINK } from './const';
 import { Sort, Order } from '../types/types';
 import getAPICar from './get-car';
 import sortWinners from '../utils/sort-winners';
+import deleteAPIWinner from './delete-winner';
 
 const getAPIWinners = async (
   page: number,
@@ -10,14 +11,16 @@ const getAPIWinners = async (
   order?: Order,
 ): Promise<IWinnersResponse> => {
   const getSort = sort && order ? sortWinners(sort, order) : '';
+
   const response: Response = await fetch(
     `${WINNERS__LINK}?_page=${page}&_limit=${10}${getSort}`,
   );
+
   const items: IWinner[] = await response.json();
   const count: string | null = response.headers.get('X-Total-Count');
 
   if (!count) {
-    throw new Error('X-Total-Count is null');
+    throw new Error('X-Total-Count header is missing.');
   }
 
   const winnersAndCars: IWinnerCars[] = (
@@ -25,9 +28,14 @@ const getAPIWinners = async (
       items.map(async (winner: IWinner): Promise<IWinnerCars | null> => {
         try {
           const car = await getAPICar(winner.id);
-          if (!car) return null;
+          if (!car) {
+            await deleteAPIWinner(winner.id);
+            return null;
+          }
           return { ...winner, car };
-        } catch {
+        } catch (error) {
+          console.error('Error fetching car:', error);
+          await deleteAPIWinner(winner.id);
           return null;
         }
       }),

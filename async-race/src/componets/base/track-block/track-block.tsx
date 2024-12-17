@@ -6,11 +6,14 @@ import { AppDispatch, RootState } from '../../../lib/store/store';
 import { fetchCars } from '../../../lib/slices/car-slice';
 import RenderTrack from './render-track';
 import { PageStateProps } from '../../../types/interface';
+import Loader from '../../ui/loader/loader';
 import styles from './track-block.module.scss';
 
 const TrackBlock: React.FC<PageStateProps> = ({ page, setPage }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { items, totalItems } = useSelector((state: RootState) => state.cars);
+  const { items, totalItems, loading } = useSelector(
+    (state: RootState) => state.cars,
+  );
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
 
@@ -38,22 +41,28 @@ const TrackBlock: React.FC<PageStateProps> = ({ page, setPage }) => {
 
   return (
     <div>
-      <h2 className={styles.title}>{`Garage(${totalItems})`}</h2>
-      <h3 className={styles.title}>{`Page#${page}`}</h3>
-      {+totalItems > 0 ? (
-        <>
-          {items.map((car) => (
-            <RenderTrack car={car} currentPage={page} key={car.id} />
-          ))}
-          <Pagination
-            className={styles.pagination}
-            count={Math.ceil(+totalItems / 7)}
-            page={page}
-            onChange={handleChange}
-          />
-        </>
+      {loading ? (
+        <Loader />
       ) : (
-        <h2 className={styles.title}>There are no cars</h2>
+        <>
+          <h2 className={styles.title}>{`Garage(${totalItems})`}</h2>
+          <h3 className={styles.title}>{`Page#${page}`}</h3>
+          {+totalItems > 0 ? (
+            <>
+              {items.map((car) => (
+                <RenderTrack car={car} currentPage={page} key={car.id} />
+              ))}
+              <Pagination
+                className={styles.pagination}
+                count={Math.ceil(+totalItems / 7)}
+                page={page}
+                onChange={handleChange}
+              />
+            </>
+          ) : (
+            <h2 className={styles.title}>There are no cars</h2>
+          )}
+        </>
       )}
     </div>
   );
