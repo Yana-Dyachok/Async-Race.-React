@@ -35,12 +35,8 @@ const db = {
 const server = jsonServer.create();
 const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
-const cors = require('cors');
-
-const PORT = process.env.PORT || 3000;
 
 const state = { velocity: {}, blocked: {} };
-server.use(cors());
 
 server.use(middlewares);
 
@@ -67,7 +63,9 @@ server.patch('/engine', (req, res) => {
       );
   }
 
-  if (!db.garage.find((car) => car.id === +id)) {
+  const garage = router.db.get('garage').value();
+
+  if (!garage.find((car) => car.id === +id)) {
     return res
       .status(404)
       .send('Car with such id was not found in the garage.');
@@ -82,7 +80,7 @@ server.patch('/engine', (req, res) => {
       return res
         .status(404)
         .send(
-          'Engine parameters for car with such id was not found in the garage. Have you tried to set engine status to "started" before?',
+          'Engine parameters for car with such id were not found in the garage. Have you tried to set engine status to "started" before?',
         );
     }
 
@@ -106,9 +104,7 @@ server.patch('/engine', (req, res) => {
           res
             .header('Content-Type', 'application/json')
             .status(500)
-            .send(
-              "Car has been stopped suddenly. It's engine was broken down.",
-            );
+            .send('Car has been stopped suddenly. Its engine was broken down.');
         },
         (Math.random() * x) ^ 0,
       );
@@ -147,6 +143,5 @@ server.patch('/engine', (req, res) => {
 });
 
 server.use(router);
-server.listen(PORT, () => {
-  console.log('Server is running on port', PORT);
-});
+
+module.exports = server;
